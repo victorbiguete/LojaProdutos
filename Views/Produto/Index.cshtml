@@ -1,0 +1,54 @@
+﻿@using LojaProdutos.Models
+@model List<ProdutoModel>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Listagem de Produtos</h2>
+        <a class="btn btn-success"><i class="bi bi-plus-circle"></i> Cadastrar novo produto</a>
+    </div>
+
+    <table class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Nome</th>
+                <th>Marca</th>
+                <th>Categoria</th>
+                <th>Quantidade</th>
+                <th>Valor</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if(Model.Count>0)
+            {
+                @foreach(var produto in Model)
+                {
+                    <tr>
+                        @if(produto.Foto!=null)
+                        {
+                            <td><img src="..."/></td>
+                        }
+                        else
+                        {
+                            <td></td>
+                        }
+                        <td>@produto.Nome</td>
+                        <th>@produto.Marca</th>
+                        <th>@produto.Categoria</th>
+                        <th>@produto.QuantidadeEstoque</th>
+                        <th>R$ @produto.Valor.ToString("F")</th>
+                        <td>
+                            <a class="btn btn-info"><i class="bi bi-pencil mx-1"></i>Editar</a>
+                            <a class="btn btn-danger"><i class="bi bi-x-circle mx-1"></i>Remover</a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
