@@ -8,7 +8,7 @@ namespace LojaProdutos.Middleware
     {
         public static void ServicesAndIterfaces(this WebApplicationBuilder builder)
         {
-                    builder.Services.AddScoped<IProdutoInterface,ProdutoService>();
+            builder.Services.AddScoped<IProdutoInterface,ProdutoService>();
             builder.Services.AddScoped<ICategoriaInterface,CategoriaService>();
         }
     }
