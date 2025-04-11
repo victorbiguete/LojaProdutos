@@ -1,11 +1,8 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@using LojaProdutos.DTOs.Produto;
+@model CriarDTOProduto
 
 <div class="container mt-5">
-    <form>
+    <form as>
         <h2>Cadastro de Produtos</h2>
 
         <div class="mb-1">
@@ -15,27 +12,32 @@
 
         <div class="mb-1">
             <label class="form-label">Nome:</label>
-            <input class="form-control shadow-none" type="text" />
+            <input class="form-control shadow-none" type="text" asp-for="Nome"/>
+            <span asp-validation-for="Nome"></span>
         </div>
 
         <div class="mb-1">
             <label class="form-label">Marca:</label>
-            <input class="form-control shadow-none" type="text" />
+            <input class="form-control shadow-none" type="text" asp-for="Marca"/>
+            <span asp-validation-for="Marca"></span>
         </div>
 
         <div class="mb-1">
             <label class="form-label">Valor:</label>
-            <input class="form-control shadow-none" type="number" min="1" step="any"/>
+            <input class="form-control shadow-none" type="number" min="1" step="any" asp-for="Valor"/>
+            <span asp-validation-for="Valor"></span>
         </div>
 
         <div class="mb-1">
             <label class="form-label">Quantidade:</label>
-            <input class="form-control shadow-none" type="number" min="1" step="any"/>
+            <input class="form-control shadow-none" type="number" min="1" step="any" asp-for="QuantidadeEstoque"/>
+            <span asp-validation-for="QuantidadeEstoque"></span>
         </div>
 
         <div class="mb-1">
             <label class="form-label">Nome:</label>
-            <select class="form-select" asp-items="@(new SelectList(ViewBag.Categorias,"Id","Nome"))" type="text"></select>
+            <select class="form-select" asp-items="@(new SelectList(ViewBag.Categorias,"Id","Nome"))" type="text" asp-for="CategoriaModelId"></select>
+            <span asp-validation-for="CategoriaModelId"></span>
         </div>
 
         <div class="d-flex mt-3 justify-content-center">
