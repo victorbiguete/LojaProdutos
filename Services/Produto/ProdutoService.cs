@@ -1,33 +1,89 @@
 ﻿using LojaProdutos.Data;
+using LojaProdutos.DTOs.Produto;
 using LojaProdutos.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Text;
 
 namespace LojaProdutos.Services.Produto
 {
     public class ProdutoService : IProdutoInterface
     {
         private readonly AppDbContext _context;
+        private readonly string _sistema;
 
-        public ProdutoService(AppDbContext context)
+        public ProdutoService(AppDbContext context, IWebHostEnvironment sistema)
         {
             _context = context;
+            _sistema = sistema.WebRootPath;
         }
 
-        public Task<ProdutoModel> BuscarProdutoPorId(int id)
+        public async Task<ProdutoModel> BuscarProdutoPorId(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return await _context.Produtos.Include(x => x.Categoria)
+                                              .Where(x => x.Id == id)
+                                              .FirstOrDefaultAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public async Task<List<ProdutoModel>> BuscarProdutos()
         {
             try
             {
-                return await _context.Produtos.Include(x=>x.Categoria).ToListAsync(); 
+                return await _context.Produtos.Include(x => x.Categoria).ToListAsync();
             }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
+        }
+
+        public async Task<ProdutoModel> Cadastrar(CriarProdutoDTO criarProdutoDTO, IFormFile foto)
+        {
+            try
+            {
+                var nomeCaminhoImagem = GerarCaminhoArquivo(foto);
+                var produto = new ProdutoModel
+                {
+                    Nome = criarProdutoDTO.Nome,
+                    Marca = criarProdutoDTO.Marca,
+                    Valor = criarProdutoDTO.Valor,
+                    CategoriaModelId = criarProdutoDTO.CategoriaModelId,
+                    Foto = nomeCaminhoImagem,
+                    QuantidadeEstoque = criarProdutoDTO.QuantidadeEstoque
+                };
+                _context.Produtos.Add(produto);
+                await _context.SaveChangesAsync();
+
+                return produto;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        private string GerarCaminhoArquivo(IFormFile foto)
+        {
+            var codigoUnico = Guid.NewGuid().ToString();
+            var nomeCaminhoImagem = foto.FileName.Replace(" ","").ToLower() + codigoUnico + ".png";
+
+            var caminhoParaSalvarImagens = _sistema + "\\imagem\\";
+
+            if(!Directory.Exists(caminhoParaSalvarImagens))
+                Directory.CreateDirectory(caminhoParaSalvarImagens);
+            
+            using(var stream = File.Create(caminhoParaSalvarImagens+nomeCaminhoImagem))
+            {
+                foto.CopyToAsync(stream).Wait();
+            }
+
+            return nomeCaminhoImagem;
         }
     }
 }

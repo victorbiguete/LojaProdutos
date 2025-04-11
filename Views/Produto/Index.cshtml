@@ -31,7 +31,7 @@
                     <tr>
                         @if(produto.Foto!=null)
                         {
-                            <td><img src="..."/></td>
+                            <td><img src="~/imagem/@produto.Foto" style="width:100px;height:100px"/></td>
                         }
                         else
                         {
@@ -39,7 +39,7 @@
                         }
                         <td>@produto.Nome</td>
                         <th>@produto.Marca</th>
-                        <th>@produto.Categoria</th>
+                        <th>@produto.Categoria.Nome</th>
                         <th>@produto.QuantidadeEstoque</th>
                         <th>R$ @produto.Valor.ToString("F")</th>
                         <td>
