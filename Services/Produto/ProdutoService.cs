@@ -15,7 +15,17 @@ namespace LojaProdutos.Services.Produto
 
         public Task<ProdutoModel> BuscarProdutoPorId(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (id == 0)
+                    return null;
+
+                return _context.Produtos.Where(x => x.Id == id).FirstOrDefaultAsync();
+            }
+            catch(Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public async Task<List<ProdutoModel>> BuscarProdutos()

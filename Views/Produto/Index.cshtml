@@ -43,8 +43,8 @@
                         <th>@produto.QuantidadeEstoque</th>
                         <th>R$ @produto.Valor.ToString("F")</th>
                         <td>
-                            <a class="btn btn-info"><i class="bi bi-pencil mx-1"></i>Editar</a>
-                            <a class="btn btn-danger"><i class="bi bi-x-circle mx-1"></i>Remover</a>
+                            <a class="btn btn-info" asp-action="Editar" asp-controller="Produto" asp-route-id="@produto.Id"><i class="bi bi-pencil mx-1"></i>Editar</a>
+                            <a class="btn btn-danger" asp-action="Remover" asp-controller="Produto" asp-route-id="@produto.Id"><i class="bi bi-x-circle mx-1"></i>Remover</a>
                         </td>
                     </tr>
                 }

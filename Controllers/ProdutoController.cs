@@ -28,5 +28,10 @@ namespace LojaProdutos.Controllers
             ViewBag.Categorias = await _categoriaInterface.BuscarCategorias();
             return View();
         }
+
+        public async Task<IActionResult> Editar()
+        {
+
+        }
     }
 }
