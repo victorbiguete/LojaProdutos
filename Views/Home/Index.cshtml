@@ -4,6 +4,21 @@
 @using LojaProdutos.Models
 @model List<ProdutoModel>
 
+@if (TempData["MensagemSucesso"] != null)
+{
+    <div class="alert alert-success text-dark" role="alert">
+        @TempData["MensagemSucesso"]
+    </div>
+
+}
+
+@if (TempData["MensagemErro"] != null)
+{
+    <div class="alert alert-danger text-white" role="alert">
+        @TempData["MensagemErro"]
+    </div>
+}
+
 <div class="container mt-5">
     <div class="text-center mb-5">
         <form asp-action="Index" asp-controller="Home" method="get" class="d-flex justify-content-center">
