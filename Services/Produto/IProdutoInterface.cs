@@ -11,6 +11,7 @@ namespace LojaProdutos.Services.Produto
         Task<ProdutoModel> Editar(EditarProdutoDTO editarProdutoDTO, IFormFile? foto);
 
         Task<ProdutoModel> Remover(int id);
+        Task<List<ProdutoModel>> BuscarProdutoFiltro(string pesquisar)
 
         //Task<ProdutoModel> 
     }

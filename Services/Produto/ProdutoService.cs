@@ -17,6 +17,21 @@ namespace LojaProdutos.Services.Produto
             _sistema = sistema.WebRootPath;
         }
 
+        public async Task<List<ProdutoModel>> BuscarProdutoFiltro(string pesquisar)
+        {
+            try
+            {
+                return await _context.Produtos.Include(x => x.Categoria)
+                                              .Where(x => x.Nome.Contains(pesquisar) || 
+                                                          x.Marca.Contains(pesquisar))
+                                              .ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         public async Task<ProdutoModel> BuscarProdutoPorId(int id)
         {
             try
