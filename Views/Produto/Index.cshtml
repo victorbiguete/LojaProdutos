@@ -24,12 +24,12 @@
 <div class="container mt-5">
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h2>Listagem de Produtos</h2>
-        <a class="btn btn-success" asp-action="Cadastrar"><i class="bi bi-plus-circle"></i> Cadastrar novo produto</a>
+        <a class="btn btn-outline-primary" asp-action="Cadastrar"><i class="bi bi-plus-circle"></i> Cadastrar novo produto</a>
     </div>
 
-    <table class="table table-hover table-bordered">
+    <table class="table table-hover table-bordered " id="registros">
         <thead>
-            <tr>
+            <tr class="table-dark">
                 <th></th>
                 <th>Nome</th>
                 <th>Marca</th>
@@ -59,8 +59,8 @@
                         <th>@produto.QuantidadeEstoque</th>
                         <th>R$ @produto.Valor.ToString("F")</th>
                         <td>
-                            <a class="btn btn-info" asp-action="Editar" asp-controller="Produto" asp-route-id="@produto.Id"><i class="bi bi-pencil mx-1"></i>Editar</a>
-                            <a class="btn btn-danger" asp-action="Remover" asp-controller="Produto" asp-route-id="@produto.Id"><i class="bi bi-x-circle mx-1"></i>Remover</a>
+                            <a class="btn btn-outline-info" asp-action="Editar" asp-controller="Produto" asp-route-id="@produto.Id"><i class="bi bi-pencil mx-1"></i>Editar</a>
+                            <a class="btn btn-outline-danger" asp-action="Remover" asp-controller="Produto" asp-route-id="@produto.Id"><i class="bi bi-x-circle mx-1"></i>Remover</a>
                         </td>
                     </tr>
                 }
