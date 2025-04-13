@@ -82,5 +82,14 @@ namespace LojaProdutos.Controllers
             }
 
         }
+
+
+
+        public async Task<IActionResult> Remover (int id)
+        {
+            var produto = await _produtoInterface.Remover(id);
+
+            return RedirectToAction("Index", "Produto");
+        }
     }
 }

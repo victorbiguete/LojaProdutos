@@ -16,31 +16,31 @@
         <div class="mb-1">
             <label class="form-label">Nome:</label>
             <input class="form-control shadow-none" type="text" asp-for="Nome" />
-            <span asp-validation-for="Nome"></span>
+            <span asp-validation-for="Nome" class="text-danger"></span>
         </div>
 
         <div class="mb-1">
             <label class="form-label">Marca:</label>
             <input class="form-control shadow-none" type="text" asp-for="Marca" />
-            <span asp-validation-for="Marca"></span>
+            <span asp-validation-for="Marca" class="text-danger"></span>
         </div>
 
         <div class="mb-1">
             <label class="form-label">Valor:</label>
             <input class="form-control shadow-none" type="number" min="1" step="any" asp-for="Valor" />
-            <span asp-validation-for="Valor"></span>
+            <span asp-validation-for="Valor" class="text-danger"></span>
         </div>
 
         <div class="mb-1">
             <label class="form-label">Quantidade:</label>
             <input class="form-control shadow-none" type="number" min="1" step="any" asp-for="QuantidadeEstoque" />
-            <span asp-validation-for="QuantidadeEstoque"></span>
+            <span asp-validation-for="QuantidadeEstoque" class="text-danger"></span>
         </div>
 
         <div class="mb-1">
             <label class="form-label">Nome:</label>
             <select class="form-select" asp-items="@(new SelectList(ViewBag.Categorias,"Id","Nome",Model.CategoriaModelId))" type="text" asp-for="CategoriaModelId"></select>
-            <span asp-validation-for="CategoriaModelId"></span>
+            <span asp-validation-for="CategoriaModelId" class="text-danger"></span>
         </div>
 
         <div class="d-flex mt-3 justify-content-center">
