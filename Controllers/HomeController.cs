@@ -27,7 +27,7 @@ namespace LojaProdutos.Controllers
                 produtos = await _produtoInterface.BuscarProdutoFiltro(pesquisar);
             }
 
-            return View();
+            return View(produtos);
         }
 
 
