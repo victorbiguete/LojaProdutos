@@ -7,6 +7,7 @@ namespace LojaProdutos.Data
     {
         public DbSet<CategoriaModel> Categorias { get; set; }
         public DbSet<ProdutoModel> Produtos { get; set; }
+        public DbSet<ProdutosBaixadosModel> ProdutosBaixados {get; set;}
 
         public AppDbContext(DbContextOptions<AppDbContext> options):base(options)
         {
