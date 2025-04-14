@@ -15,7 +15,7 @@ namespace LojaProdutos.Controllers
         public IActionResult Index()
         {
             var registro = _estoqueInterface.ListagemRegistro();
-            return View();
+            return View(registro);
         }
         [HttpPost]
         public async Task<IActionResult> BaixarEstoque(int id)
