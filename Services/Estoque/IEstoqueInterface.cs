@@ -5,5 +5,6 @@ namespace LojaProdutos.Services.Estoque
     public interface IEstoqueInterface
     {
         Task<ProdutosBaixadosModel> CriarRegistro(int id);
+        List<RegistroProdutosModel> ListagemRegistro();
     }
 }

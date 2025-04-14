@@ -1,6 +1,7 @@
 ﻿using LojaProdutos.Data;
 using LojaProdutos.Models;
 using LojaProdutos.Services.Produto;
+using Microsoft.EntityFrameworkCore;
 
 namespace LojaProdutos.Services.Estoque
 {
@@ -36,6 +37,47 @@ namespace LojaProdutos.Services.Estoque
                 await _context.SaveChangesAsync();
 
                 return produtoBaixado;
+            }
+            catch(Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public List<RegistroProdutosModel> ListagemRegistro()
+        {
+            try
+            {
+                var resultado = from c in _context.ProdutosBaixados.Include(x => x.Produto).Include(y => y.Produto.Categoria).ToList() group c by new
+                    {
+                        c.Produto.CategoriaModelId,
+                        c.DataDaBaixa
+                    } into total select new
+                    {
+                        ProdutoId = total.First().Produto.Categoria.Id,
+                        CategoriaNome = total.First().Produto.Categoria.Nome,
+                        DataCompra = total.First().DataDaBaixa,
+                        Total = total.Sum(c => c.Produto.Valor)
+                    };
+
+                var totalGeral = _context.ProdutosBaixados.Include(x => x.Produto).Include(y => y.Produto.Categoria).Sum(c => c.Produto.Valor);
+
+                List<RegistroProdutosModel> lista = new List<RegistroProdutosModel>();
+
+                foreach(var result in resultado)
+                {
+                    var registro = new RegistroProdutosModel
+                    {
+                        ProdutoId = result.ProdutoId,
+                        CategoriaNome = result.CategoriaNome,
+                        DataCompra = result.DataCompra,
+                        Total = result.Total,
+                        TotalGeral = totalGeral
+                    };
+                    lista.Add(registro);
+                }
+
+                return lista;
             }
             catch(Exception ex)
             {
