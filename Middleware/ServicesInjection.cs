@@ -1,6 +1,7 @@
 ﻿using LojaProdutos.Services.Categoria;
 using LojaProdutos.Services.Estoque;
 using LojaProdutos.Services.Produto;
+using LojaProdutos.Services.Usuario;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace LojaProdutos.Middleware
@@ -12,6 +13,7 @@ namespace LojaProdutos.Middleware
             builder.Services.AddScoped<IProdutoInterface,ProdutoService>();
             builder.Services.AddScoped<ICategoriaInterface,CategoriaService>();
             builder.Services.AddScoped<IEstoqueInterface,EstoqueService>(); 
+            builder.Services.AddScoped<IUsuarioInterface,UsuarioService>();
         }
     }
 }
