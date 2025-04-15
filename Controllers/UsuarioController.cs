@@ -17,5 +17,10 @@ namespace LojaProdutos.Controllers
             var usuarios = await _usuarioInterface.BuscarUsuarios();
             return View();
         }
+
+        public async Task<IActionResult> Cadastrar()
+        {
+            return View();
+        }
     }
 }
