@@ -30,6 +30,7 @@
                 <th>Estado</th>
                 <th>Email</th>
                 <th>Data de Criação</th>
+                <th>Data de Alteração</th>
                 <th></th>
                 
             </tr>
@@ -45,7 +46,9 @@
                                 <td>@usuario.Nome</td>
                                 <td>@usuario.Endereco.Estado</td>
                                 <td>@usuario.Email</td>
-                                <td>@usuario.DataAlteracao.ToString("dd/MM/yyyy")</td>
+                                <td>@usuario.DataCadastro.ToString("dd/MM/yyyy hh:mm")</td>
+                                <td>@usuario.DataAlteracao.ToString("dd/MM/yyyy hh:mm")</td>
+
                                 <td><a asp-controller="Usuario" asp-action="Editar" asp-route-id="@usuario.Id" class="btn btn-outline-info"><i class="bi bi-pencil"></i> Editar</a></td>
                             </tr>
                         }

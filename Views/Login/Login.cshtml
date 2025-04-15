@@ -1,0 +1,19 @@
+﻿@using LojaProdutos.DTOs.Login
+@model LoginUsuarioDTO
+
+<div class="container ">
+
+    <form asp-action="Login" asp-controller="Login" method="post">
+        <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-control" asp-for="Email"/>
+            <span asp-validation-for="Email"></span>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Senha</label>
+            <input type="password" class="form-control" asp-for="Senha"/>
+            <span asp-validation-for="Senha"></span>
+        </div>
+        <button type="submit" class="btn btn-outline-success">Entrar</button>
+    </form>
+</div>
