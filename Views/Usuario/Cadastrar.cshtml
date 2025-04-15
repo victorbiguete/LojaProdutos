@@ -1,17 +1,34 @@
 ﻿@using LojaProdutos.DTOs.Usuario
 @model CriarUsuarioDTO
 
+@if (TempData["MensagemSucesso"] != null)
+{
+    <div class="alert alert-success text-dark" role="alert">
+        @TempData["MensagemSucesso"]
+    </div>
+
+}
+
+@if (TempData["MensagemErro"] != null)
+{
+    <div class="alert alert-danger text-white" role="alert">
+        @TempData["MensagemErro"]
+    </div>
+}
+
 <div class="container mt-5">
     <h2>Cadastro de Usuarios</h2>
     <form asp-controller="Usuario" asp-action="Cadastrar" method="post"> 
         <div class="mb-1">
             <label class="form-label">Nome Completo</label>
             <input type="text" class="form-control shadow-none" asp-for="Nome" />
+            <span asp-validation-for="Nome" class="text-danger"></span>
         </div>
 
         <div class="mb-1">
             <label class="form-label">Email</label>
             <input type="email" class="form-control shadow-none" asp-for="Email"/>
+            <span asp-validation-for="Email" class="text-danger"></span>
         </div>
 
         <div class="mb-1">
@@ -26,10 +43,12 @@
             <div class="mb-1 col-6">
                 <label class="form-label">CEP</label>
                 <input type="text" class="form-control shadow-none" id="input-cep" asp-for="CEP"/>
+                <span asp-validation-for="CEP" class="text-danger"></span>
             </div>
             <div class="mb-1 col-6">
                 <label class="form-label">Estado</label>
                 <input type="text" class="form-control shadow-none" id="input-estado" asp-for="Estado"/>
+                <span asp-validation-for="Estado" class="text-danger"></span>
             </div>
         </div>
 
@@ -37,10 +56,12 @@
             <div class="mb-1 col-6">
                 <label class="form-label">Logradouro</label>
                 <input type="text" class="form-control shadow-none" id="input-logradouro" asp-for="Logradouro"/>
+                <span asp-validation-for="Logradouro" class="text-danger"></span>
             </div>
             <div class="mb-1 col-6">
                 <label class="form-label">Numero</label>
                 <input type="text" class="form-control shadow-none" asp-for="Numero"/>
+                <span asp-validation-for="Numero" class="text-danger"></span>
             </div>
         </div>
 
@@ -48,24 +69,28 @@
             <div class="mb-1 col-6">
                 <label class="form-label">Bairro</label>
                 <input type="text" class="form-control shadow-none" id="input-bairro" asp-for="Bairro"/>
+                <span asp-validation-for="Bairro" class="text-danger"></span>
             </div>
             <div class="mb-1 col-6">
                 <label class="form-label">Complemento</label>
                 <input type="text" class="form-control shadow-none" id="input-complemento" asp-for="Complemento"/>
+                <span asp-validation-for="Complemento" class="text-danger"></span>
             </div>
         </div>
 
         <div class="mb-1">
             <label class="form-label">Senha</label>
             <input type="password" class="form-control shadow-none" asp-for="Senha"/>
+            <span asp-validation-for="Senha" class="text-danger"></span>
         </div>
         <div class="mb-1">
             <label class="form-label">Confirma Senha</label>
             <input type="password" class="form-control shadow-none" asp-for="ConfirmarSenha"/>
+            <span asp-validation-for="ConfirmarSenha" class="text-danger"></span>
         </div>
         <div>
-            <button type ="submit" class="btn btn-outline-success w-50 mx-1">Cadastrar</button>
-            <a asp-controller="Usuario" asp-action="Index" class="btn btn-outline-info">Voltar</a>
+            <button type ="submit" class="btn btn-outline-success w-25 mx-1">Cadastrar</button>
+            <a asp-controller="Usuario" asp-action="Index" class="btn btn-outline-info w-25 mx-1">Voltar</a>
         </div>
     </form>
 </div>

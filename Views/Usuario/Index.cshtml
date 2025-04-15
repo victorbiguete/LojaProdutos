@@ -1,6 +1,21 @@
 ﻿@using LojaProdutos.Models
 @model List<UsuarioModel>
 
+@if (TempData["MensagemSucesso"] != null)
+{
+    <div class="alert alert-success text-dark" role="alert">
+        @TempData["MensagemSucesso"]
+    </div>
+
+}
+
+@if (TempData["MensagemErro"] != null)
+{
+    <div class="alert alert-danger text-white" role="alert">
+        @TempData["MensagemErro"]
+    </div>
+}
+
 <div class="container mt-5">
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h2>Listagem de Usuarios</h2>
@@ -30,7 +45,7 @@
                                 <td>@usuario.Nome</td>
                                 <td>@usuario.Endereco.Estado</td>
                                 <td>@usuario.Email</td>
-                                <td>@usuario.DataAlteracao.ToString("dd/mm/yyyy")</td>
+                                <td>@usuario.DataAlteracao.ToString("dd/MM/yyyy")</td>
                                 <td><a asp-controller="Usuario" asp-action="Editar" asp-route-id="@usuario.Id" class="btn btn-outline-info"><i class="bi bi-pencil"></i> Editar</a></td>
                             </tr>
                         }

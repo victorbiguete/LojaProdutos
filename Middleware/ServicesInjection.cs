@@ -1,4 +1,5 @@
-﻿using LojaProdutos.Services.Categoria;
+﻿using LojaProdutos.Services.AutenticaçãoService;
+using LojaProdutos.Services.Categoria;
 using LojaProdutos.Services.Estoque;
 using LojaProdutos.Services.Produto;
 using LojaProdutos.Services.Usuario;
@@ -14,6 +15,7 @@ namespace LojaProdutos.Middleware
             builder.Services.AddScoped<ICategoriaInterface,CategoriaService>();
             builder.Services.AddScoped<IEstoqueInterface,EstoqueService>(); 
             builder.Services.AddScoped<IUsuarioInterface,UsuarioService>();
+            builder.Services.AddScoped<IAutenticacaoInterface,AutenticacaoService>();
         }
     }
 }
