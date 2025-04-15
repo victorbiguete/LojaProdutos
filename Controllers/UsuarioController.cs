@@ -1,4 +1,5 @@
-﻿using LojaProdutos.Services.Usuario;
+﻿using LojaProdutos.DTOs.Usuario;
+using LojaProdutos.Services.Usuario;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LojaProdutos.Controllers
@@ -15,12 +16,32 @@ namespace LojaProdutos.Controllers
         public async Task<IActionResult> Index()
         {
             var usuarios = await _usuarioInterface.BuscarUsuarios();
-            return View();
+            return View(usuarios);
         }
 
-        public async Task<IActionResult> Cadastrar()
+        [HttpPost]
+        public async Task<IActionResult> Cadastrar(CriarUsuarioDTO criarUsuarioDTO)
         {
-            return View();
+            if(ModelState.IsValid)
+            {
+                if(await _usuarioInterface.VerificaSeExisteEmail(criarUsuarioDTO))
+                {
+                    TempData["MensagemErro"] = "Esse email já está cadastrado, tente outro";
+                }
+                var usuario = await _usuarioInterface.Cadastrar(criarUsuarioDTO);
+
+                TempData["MensagemSucesso"] = "Cadastro realizado com Sucesso";
+
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                TempData["MensagemErro"] = "Verifique os Dados Informados";
+                return View(criarUsuarioDTO);
+            }
+            
         }
+
+        public IActionResult Cadastrar() { return View(); }
     }
 }
