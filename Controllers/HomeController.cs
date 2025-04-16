@@ -1,3 +1,4 @@
+using LojaProdutos.Filtros;
 using LojaProdutos.Models;
 using LojaProdutos.Services.Produto;
 using Microsoft.AspNetCore.Mvc;
@@ -5,6 +6,7 @@ using System.Diagnostics;
 
 namespace LojaProdutos.Controllers
 {
+    [UsuarioLogado]
     public class HomeController : Controller
     {
         private readonly IProdutoInterface _produtoInterface;

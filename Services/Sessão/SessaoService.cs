@@ -14,7 +14,7 @@ namespace LojaProdutos.Services.Sessão
 
         public UsuarioModel BuscarSessao()
         {
-            string sessaoUsuario = _ctx.HttpContext.Session.GetString("UsuarioSessao");
+            string sessaoUsuario = _ctx.HttpContext.Session.GetString("usuarioSessao");
 
             if(string.IsNullOrEmpty(sessaoUsuario) )
             {
@@ -26,12 +26,12 @@ namespace LojaProdutos.Services.Sessão
         public void CriarSessao(UsuarioModel usuario)
         {
             string usuarioJson = JsonConvert.SerializeObject(usuario);
-            _ctx.HttpContext.Session.SetString("UsuarioSessao", usuarioJson);
+            _ctx.HttpContext.Session.SetString("usuarioSessao", usuarioJson);
         }
 
         public void RemoverSessao()
         {
-            _ctx.HttpContext.Session.Remove("UsuarioSessao");
+            _ctx.HttpContext.Session.Remove("usuarioSessao");
         }
     }
 }

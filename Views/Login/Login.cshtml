@@ -1,6 +1,21 @@
 ﻿@using LojaProdutos.DTOs.Login
 @model LoginUsuarioDTO
 
+@if (TempData["MensagemSucesso"] != null)
+{
+    <div class="alert alert-success text-dark" role="alert">
+        @TempData["MensagemSucesso"]
+    </div>
+
+}
+
+@if (TempData["MensagemErro"] != null)
+{
+    <div class="alert alert-danger text-white" role="alert">
+        @TempData["MensagemErro"]
+    </div>
+}
+
 <div class="container ">
 
     <form asp-action="Login" asp-controller="Login" method="post">
