@@ -1,4 +1,5 @@
 ﻿using LojaProdutos.DTOs.Login;
+using LojaProdutos.Services.Sessão;
 using LojaProdutos.Services.Usuario;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,15 +8,23 @@ namespace LojaProdutos.Controllers
     public class LoginController : Controller
     {
         private readonly IUsuarioInterface _usuarioInterface;
+        private readonly ISessaoInterface _sessaoInterface;
 
-        public LoginController(IUsuarioInterface usuarioInterface)
+        public LoginController(IUsuarioInterface usuarioInterface,ISessaoInterface sessaoInterface)
         {
             _usuarioInterface = usuarioInterface;
+            _sessaoInterface = sessaoInterface;
         }
 
         public IActionResult Login()
         {
             return View();
+        }
+
+        public IActionResult Sair()
+        {
+            _sessaoInterface.RemoverSessao();
+            return RedirectToAction("Login","Login");
         }
 
         [HttpPost]
@@ -39,5 +48,7 @@ namespace LojaProdutos.Controllers
             }
             
         }
+
+        
     }
 }
