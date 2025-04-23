@@ -1,4 +1,4 @@
-# 🛍️ E-Commerce em ASP.NET MVC  
+# 🛍️ E-Commerce em ASP.NET MVC - PROJETO EM CONTINUO DESENVOLVIMENTO
 
 Um projeto de loja virtual desenvolvido com **ASP.NET MVC, Entity Framework Core, SQLite e OAuth2** para fins de aprendizado.  
 
@@ -36,27 +36,10 @@ Simulação de um e-commerce funcional com:
 - Persistência em sessão  
 
 ### 🔐 Autenticação  
-- Login com Google (OAuth2)  
 - Registro manual  
 - Controle de acesso (Admin/Usuário)  
 
 ### ⚡ Painel Admin  
 - CRUD de produtos  
 - Gerenciamento de estoque  
-
 ---
-
-## 🚀 Como Executar  
-```bash
-# 1. Clone o repositório
-git clone https://github.com/seu-usuario/ecommerce-mvc.git
-
-# 2. Restaure pacotes
-dotnet restore
-
-# 3. Execute as migrations
-dotnet ef database update
-
-# 4. Inicie o servidor
-dotnet run
-
